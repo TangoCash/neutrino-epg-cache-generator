@@ -1,0 +1,17 @@
+Requirements:
+- any LAMP powered host, which permits shell scripts;
+- perl interpeter with mysql, DBI, xmltv modules/extensions;
+- valid XMLTV source.
+
+Installation:
+- extract/copy files somewhere;
+- create empty mysql DB with provided schema, create DB user, grant permissions;
+- check/fix db/username/password in php/database.inc.php and xmltv-import.pl;
+- check/fix files path/names in epg-gen.sh and php/database.inc.php;
+- if you need a test run, use reference xml files as source.
+
+Run epg-gen.sh and wait - on large datasets it really take some time, most of spend in xmltv-import.pl.
+
+
+
+

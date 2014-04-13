@@ -1,0 +1,6 @@
+db - database schema;
+php - a bunch of php scripts - db maintenance, import/export, etc;
+plugin - client-side plugin, for fetching archived EPG cache to STB;
+reference - some XMLTV reference files;
+epg-gen.sh - main shell script;
+xmltv-import.pl - perl script, parsing and import XMLTV data to mysql DB.

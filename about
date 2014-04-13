@@ -1,0 +1,9 @@
+Long story short: on many satellites EPG is not transmitted in transport stream,
+but "a certain man always strive for the best" - so many people collect EPG data
+from different sources in various ways. 
+On Enigma powered satellite STBs this problem was solved a long ago, and now 
+exist many plugins which fetch EPG data from different online sources.
+
+This project tries to solve same problem for Neutrino powered boxes, mostly
+for Russian and Ukranian TV channels, but feel free to adapt it to your needs -
+just find valid XMLTV source.
