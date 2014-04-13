@@ -1,6 +1,10 @@
 db - database schema;
 php - a bunch of php scripts - db maintenance, import/export, etc;
 plugin - client-side plugin, for fetching archived EPG cache to STB;
-reference - some XMLTV reference files;
+reference - some XMLTV reference files:
+- tvprogram.xml - main EPG source;
+- channels.xml - TV channels reference table;
+- epg.tar.gz - final archive with Neutrino EPG cache;
 epg-gen.sh - main shell script;
 xmltv-import.pl - perl script, parsing and import XMLTV data to mysql DB.
+

@@ -10,12 +10,9 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Дамп структуры базы данных TVprg
 CREATE DATABASE IF NOT EXISTS `TVprg` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `TVprg`;
 
-
--- Дамп структуры для таблица TVprg.bookmarks
 CREATE TABLE IF NOT EXISTS `bookmarks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `showid` int(11) NOT NULL,
@@ -24,10 +21,6 @@ CREATE TABLE IF NOT EXISTS `bookmarks` (
   KEY `uid_showid_index` (`uid`,`showid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
-
-
--- Дамп структуры для таблица TVprg.channels
 CREATE TABLE IF NOT EXISTS `channels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvuri` tinytext NOT NULL,
@@ -38,10 +31,6 @@ CREATE TABLE IF NOT EXISTS `channels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
-
-
--- Дамп структуры для таблица TVprg.credits
 CREATE TABLE IF NOT EXISTS `credits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `showid` int(10) unsigned NOT NULL,
@@ -51,10 +40,6 @@ CREATE TABLE IF NOT EXISTS `credits` (
   KEY `showid_index` (`showid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
-
-
--- Дамп структуры для таблица TVprg.lschannels-ru
 CREATE TABLE IF NOT EXISTS `lschannels-ru` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvuri` tinytext,
@@ -65,9 +50,6 @@ CREATE TABLE IF NOT EXISTS `lschannels-ru` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица TVprg.programmes
 CREATE TABLE IF NOT EXISTS `programmes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `begintime` int(10) unsigned NOT NULL,
@@ -81,10 +63,6 @@ CREATE TABLE IF NOT EXISTS `programmes` (
   KEY `channel_begin_index` (`begintime`,`channel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
-
-
--- Дамп структуры для таблица TVprg.sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
@@ -94,10 +72,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `key_uid_index` (`uid`,`cookie`(5))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
 
-
--- Дамп структуры для таблица TVprg.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(20) DEFAULT NULL,
@@ -111,7 +86,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `nickname_index` (`nickname`(10))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Экспортируемые данные не выделены.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
