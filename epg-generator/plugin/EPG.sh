@@ -63,6 +63,8 @@ cd $epg_dir
 tar -xzf $tmp_dir/$file_name
 rm $tmp_dir/$file_name
 
+# Heavily depend on Neutrino internal stuff - may break at any moment
+
 echo "Getting channels list..."
 bq=`pzapit | grep ther | cut -c1`
 wget -q -O $tmp_dir/channels http://127.0.0.1/y/cgi?execute=func:get_channels_as_dropdown%20$bq
@@ -71,9 +73,9 @@ for f in `cut -c19-30 $tmp_dir/channels`; do
 echo $f".xml" >> $tmp_dir/files 
 done
 
-for f in `cat $tmp_dir/files`; do
 echo "Moving actual data..."
-mv $epg_dir/$f $epg_dir/$tmp_dir > /dev/null 2>&1
+for f in `cat $tmp_dir/files`; do
+mv $epg_dir/$f $epg_dir$tmp_dir > /dev/null 2>&1
 done
 
 echo "Generating index file..."
