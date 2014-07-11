@@ -1,6 +1,6 @@
 Requirements:
 - any LAMP powered host, which permits shell scripts;
-- perl interpeter with mysql, DBI, xmltv modules/extensions;
+- perl interpreter with mysql, DBI, xmltv modules/extensions;
 - a valid XMLTV source.
 
 Installation:

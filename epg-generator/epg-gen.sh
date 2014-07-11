@@ -33,7 +33,7 @@ then
 mkdir -p $tmp_dir/$epg_dir
 fi
 rm $tmp_dir/$epg_dir/*
-php -f $root_dir/$php_dir/xmltv-export.php
+php -f $root_dir/$php_dir/xmltv-export.php > /dev/null 2>&1
 
 echo "Generating index file..."
 cd $tmp_dir/$epg_dir

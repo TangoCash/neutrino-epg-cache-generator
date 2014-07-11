@@ -1,7 +1,7 @@
 <?php 	
 require_once "database.inc.php";
 
-#removing empty uri's
+#delete empty uri's
 
 $sql = "delete from `lschannels-ru` where tvuri=\"\"";
 $retval = mysql_query( $sql );
@@ -10,7 +10,7 @@ if(! $retval )
   die('Could not enter data: ' . mysql_error());
 }
 
-#removing malforming filenames
+#delete malforming filenames
 
 $sql = "delete from `lschannels-ru` where LENGTH(fname)<>16";
 $retval = mysql_query( $sql );
@@ -19,7 +19,7 @@ if(! $retval )
   die('Could not enter data: ' . mysql_error());
 }
 
-#removing quotes
+#remove quotes
 
 $sql = "update programmes set title=REPLACE(title, '\"', ''), text=REPLACE(text, '\"', '')";
 $retval = mysql_query( $sql );

@@ -2,7 +2,7 @@
 
 mem_limit="100"
 sch_str="epg_dir"
-file_url="http://epg_source/"
+file_url="http://epg_archive_source/"
 file_name="epg.tar.gz"
 file_conf="/var/tuxbox/config/neutrino.conf"
 
@@ -41,7 +41,7 @@ exit
 fi
 
 echo "Getting new file from server..."
-wget -qP $tmp_dir/ $file_url$file_name
+wget -qO $tmp_dir/$file_name $file_url$file_name
 
 if [ ! -f $tmp_dir/$file_name ]
 then
@@ -59,28 +59,34 @@ rm $epg_dir/*.*
 rm $epg_dir$tmp_dir/*.*
 
 echo "Unpacking..."
-cd $epg_dir
+cd $epg_dir$tmp_dir
 tar -xzf $tmp_dir/$file_name
 rm $tmp_dir/$file_name
 
 # Heavily depend on Neutrino internal stuff - may break at any moment
 
 echo "Getting channels list..."
-bq=`pzapit | grep ther | cut -c1`
-wget -q -O $tmp_dir/channels http://127.0.0.1/y/cgi?execute=func:get_channels_as_dropdown%20$bq
+bq=`pzapit | grep ther |  awk '{print $1}'`
+size=${#bq}
+if [ $size -lt 3 ]
+then 
+bq=`echo $bq | cut -c1`
+else
+bq=`echo $bq | cut -c1-2`
+fi
 
+wget -q -O $tmp_dir/channels http://127.0.0.1/y/cgi?execute=func:get_channels_as_dropdown%20$bq
+ 
 for f in `cut -c19-30 $tmp_dir/channels`; do
 echo $f".xml" >> $tmp_dir/files 
 done
-
 echo "Moving actual data..."
 for f in `cat $tmp_dir/files`; do
-mv $epg_dir/$f $epg_dir$tmp_dir > /dev/null 2>&1
+mv $epg_dir$tmp_dir/$f $epg_dir > /dev/null 2>&1
 done
-
 echo "Generating index file..."
-cd $epg_dir$tmp_dir
-ls -1 | tr '\n' '\0' | xargs -0 -n 1 basename > $tmp_dir/files
+cd $epg_dir
+ls -p | grep -v / > $tmp_dir/files
 echo '<?xml version="1.0" encoding="UTF-8"?>' > index.xml
 echo "<dvbepgfiles>" >> index.xml
 for f in `cat $tmp_dir/files`; do
@@ -89,10 +95,10 @@ done
 echo "</dvbepgfiles>" >> index.xml
 
 echo "Clean up..."
-rm $epg_dir/*.*
+rm $epg_dir$tmp_dir/*.*
 
 echo "Start reloading EPG data, this can take some time..."
-sectionsdcontrol --readepg $epg_dir$tmp_dir
+sectionsdcontrol --readepg $epg_dir
 
 echo "Done!"
 exit
