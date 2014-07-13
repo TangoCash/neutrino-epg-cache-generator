@@ -66,14 +66,7 @@ rm $tmp_dir/$file_name
 # Heavily depend on Neutrino internal stuff - may break at any moment
 
 echo "Getting channels list..."
-bq=`pzapit | grep ther |  awk '{print $1}'`
-size=${#bq}
-if [ $size -lt 3 ]
-then 
-bq=`echo $bq | cut -c1`
-else
-bq=`echo $bq | cut -c1-2`
-fi
+bq=`pzapit | grep ther | cut -d: -f1`
 
 wget -q -O $tmp_dir/channels http://127.0.0.1/y/cgi?execute=func:get_channels_as_dropdown%20$bq
  
